@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
-import learnSymbol from './data.js'
-import Cell from './Cell.js'
-import ColorSelector from './ColorSelector.js'
+import learnSymbol from './data.js';
+import Cell from './Cell.js';
+import ColorSelector from './ColorSelector.js';
 
 export default class Matrix extends Component {
 
   constructor() {
     super()
+    // set up state
+    this.state = {
+      selectedColor: '#FFF'
+    }
   }
 
+  // a method to update state
+  setSelectorColor = (newColor) => {
+    this.setState({ 
+      selectedColor: newColor
+    })
+  }
+
+  // with arrow functions, you can use parentheses to implicitly return a value
   genRow = (vals) => (
-    vals.map((val, idx) => <Cell key={idx} color={val} />)
+    // pass data to Cell
+    vals.map((val, idx) => <Cell key={idx} color={val} selectedColor={this.state.selectedColor} />)
   )
 
   genMatrix = () => (
@@ -20,7 +33,8 @@ export default class Matrix extends Component {
   render() {
     return (
       <div id="app">
-        <ColorSelector />
+        {/* pass callbacks to ColorSelector */}
+        <ColorSelector setSelectedColor={this.setSelectedColor} />
         <div id="matrix">
           {this.genMatrix()}
         </div>
