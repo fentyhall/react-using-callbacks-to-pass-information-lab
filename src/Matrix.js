@@ -14,7 +14,7 @@ export default class Matrix extends Component {
   }
 
   // a method to update state
-  setSelectorColor = (newColor) => {
+  setSelectedColor = (newColor) => {
     this.setState({ 
       selectedColor: newColor
     })
@@ -33,7 +33,6 @@ export default class Matrix extends Component {
   render() {
     return (
       <div id="app">
-        {/* pass callbacks to ColorSelector */}
         <ColorSelector setSelectedColor={this.setSelectedColor} />
         <div id="matrix">
           {this.genMatrix()}
